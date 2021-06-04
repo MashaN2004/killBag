@@ -1,0 +1,63 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Document</title>
+      <style type="text/css">
+        .rick{
+          height: 100px;
+          width: 200px;
+          position: absolute;
+
+        }
+      </style>
+    </head>
+    <body class="bg">
+      <h1>Количество жуков:<span class="count"></span> </h1>
+      <h1>Количество убитых жуков:<span class="count_died"></span>  </h1>
+
+
+      <script>
+        let count = document.querySelector(".count");
+        let count_died = document.querySelector(".count_died")
+        let score = 0;
+        let score_died = 0;
+        count.innerHTML = score;
+        count_died.innerHTML = score_died;
+        function spawn(){
+          let img = document.createElement('img');
+          document.body.appendChild(img);
+          img.src = "rick.png"
+          img.classList.add('rick');
+          img.style.left = Random() + 'px';
+          img.style.top = Random() + 'px';
+          score = score + 1;
+          count.innerHTML = score;
+
+          img.onclick = function(){
+            img.style.display = "none";
+            score_died = score_died + 1;
+            count_died.innerHTML = score_died;
+            if (score_died == 20) {
+              alert('win')
+            }
+          }
+          if (score - score_died == 20) {
+             alert('fail')
+          }
+        }
+
+        setInterval(spawn,1000);
+
+        function Random(){
+          let num = Math.random()*900;
+          let random = Math.round(num);
+          return random
+          
+          
+        }
+
+        
+      </script>
+    </body>
+    </html>
